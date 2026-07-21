@@ -1,0 +1,62 @@
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+
+    # Mark the current node as visited
+    visited.add(start)
+    print(start, end=" ")
+
+    # Visit all unvisited neighbors
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+
+# Graph
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+print("DFS Traversal:")
+dfs(graph, 'A')
+
+
+
+from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+
+    # Mark start node as visited
+    visited.add(start)
+
+    while queue:
+        # Remove the first node from the queue
+        node = queue.popleft()
+        print(node, end=" ")
+
+        # Add unvisited neighbors to the queue
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+
+# Graph
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+print("BFS Traversal:")
+bfs(graph, 'A')
